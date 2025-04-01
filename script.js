@@ -1,29 +1,25 @@
-console.log("hello")
+//function playGame(){
+//    let round = 0;
+//    humanScore = 0;
+//    pcScore = 0;
+//    while (round < 5) {
+//        getHumanChoice();
+//        getPcChoice();
+//        playRound(choiceHuman,choicePc);
+//        console.log ("Human: " +humanScore,"\n","Computer: "+pcScore)
+//        round += 1;
+//    }
+//    if (humanScore > pcScore) {
+//        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "You've won the game!" )
+//    } else if (humanScore < pcScore) {
+//        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "You've lost the game!" )
+//    } else {
+//        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "It's a draw, play again to set this once and for all!" )
+//    }
+//    console.log ("The game has ended")
+//}
 
-
-
-function playGame(){
-    let round = 0;
-    humanScore = 0;
-    pcScore = 0;
-    while (round < 5) {
-        getHumanChoice();
-        getPcChoice();
-        playRound(choiceHuman,choicePc);
-        console.log ("Human: " +humanScore,"\n","Computer: "+pcScore)
-        round += 1;
-    }
-    if (humanScore > pcScore) {
-        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "You've won the game!" )
-    } else if (humanScore < pcScore) {
-        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "You've lost the game!" )
-    } else {
-        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "It's a draw, play again to set this once and for all!" )
-    }
-    console.log ("The game has ended")
-}
-
-function getPcChoice(){
+function getPcChoice(){ //get PC option
     choicePc=undefined;
     let random = Math.random()
     if (random < (1/3)){
@@ -38,14 +34,26 @@ function getPcChoice(){
     
 }
 
+//Get Human option from buttons
 
-function getHumanChoice(){
-    let input = prompt ("What option would you like to play?", )
-    choiceHuman=input.toLowerCase()
-    console.log ("You Choosed "+choiceHuman)
-    return choiceHuman
+const buttonDiv = document.querySelector(".bottom")
 
-}
+buttonDiv.addEventListener("click", (e) => {
+    switch (e.target){
+        case document.querySelector("#rock"):
+            choiceHuman= "rock"
+            return choiceHuman
+            break;
+        case document.querySelector("#scissors"):
+            choiceHuman= "scissors"
+            return choiceHuman
+            break;
+        case document.querySelector("#paper"):
+            choiceHuman= "paper"
+            return choiceHuman
+            break;
+        }
+})
 
 function playRound(optionH,optionPc){
     let veredict;
