@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer> </script>
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="top"> 
         <h1 class="top>"> Welcome to Rock Paper Scissors</h1>
         <div class="scoreBoard">
-            <div class="player"> </div>
-            <img class="vsLogo"></img>
-            <div class="computer"></div>
+            <div class="player"> 
+                <h1> Player </h1>
+                <h3 id="history" class="human"></h3>
+                <div class="option">
+                    <img id="optionHuman" src="">
+                </div>
+            </div>
+            <img class="vsLogoImage" src="images/pngtree-vs-or-versus-in-comics-dot-style-png-image_2913118.jpg"></img>
+            <div class="player" >
+                <h1> Computer </h1>
+                <h3 id="history" class="computer"></h3>
+                <div class="option">
+                    <img id="optionPC" src="">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -21,7 +34,7 @@
             <div class="playerOption"></div>
             <div class="computerOption"></div>
         </div>
-        <h3> Round X </h3>  
+        <h3 id="round"> Round 0 </h3>  
     </div>    
 
     <div class="bottom">
@@ -33,6 +46,9 @@
         </div>
         <div class="history"></div>
     </div>
-    
+    <div id="popup">
+        <p id="endMsg">This is a custom pop-up!</p>
+        <button onclick="closePopup()">Play Again</button>
+    </div>
 </body>
 </html>

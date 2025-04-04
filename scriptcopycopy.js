@@ -1,53 +1,32 @@
-let round = 0;
-let humanScore = 0;
-let pcScore = 0;
-let winner = 0;
-const roundRef = document.querySelector("#round")
-
 
 const buttonDiv = document.querySelector(".bottom")
-buttonDiv.addEventListener("click", (e) => {playRound(e)})
 
-function playRound(e){
+buttonDiv.addEventListener("click", (e) => {playGame(e)}, {once: true})
 
-    getChoices(e)
 
-    if (round == 5){
-        if (humanScore > pcScore) {
-            showPopup("human")
-        } else if (humanScore < pcScore) {
-            showPopup("pc")
-        } else {
-            showPopup("draw")
-        }
-
-    }
-    
-}
-
-    
-function getChoices(e){
-
-    getPcChoice()                                                       //get PC Choice
-  
-    if (e.target==document.querySelector("#rock")){                     //get human choice
-        choiceHuman= "rock"
-
-    } else if (e.target==document.querySelector("#scissors")) {
-        choiceHuman= "scissors"
+function playGame(e){
+    let round = 0;
+    humanScore = 0;
+    pcScore = 0;
+    while (round < 5) {
+        if (round == 0) {getChoices(e)} 
+            else{
+         
+            }
         
+        console.log ("Human: " +humanScore,"\n","Computer: "+pcScore)
+        round += 1;
+    }
+
+    if (humanScore > pcScore) {
+        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "You've won the game!" )
+    } else if (humanScore < pcScore) {
+        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "You've lost the game!" )
     } else {
-        choiceHuman= "paper"
-        }
-    
-    const optionPCRef = document.querySelector("#optionPC")             //get img element ref for editing the src
-    const optionHumanRef = document.querySelector("#optionHuman")  
-    optionHumanRef.src= "images/"+choiceHuman+"Logo.png"                //change the images of both players based on the player choices
-    optionPCRef.src= "images/"+choicePc+"Logo.png"
-
-    return clash(choiceHuman,choicePc)                                
+        console.log ("Human: " +humanScore, "\n", "Computer: " +pcScore, "\n", "It's a draw, play again to set this once and for all!" )
+    }
+    console.log ("The game has ended")
 }
-
 
 function getPcChoice(){                                                 //get PC option
     choicePc=undefined;
@@ -65,7 +44,32 @@ function getPcChoice(){                                                 //get PC
 }
 
 
-function clash(optionH,optionPc){                                         //states the winner of the round
+function getChoices(e){
+
+    getPcChoice()                                                       
+  
+    if (e.target==document.querySelector("#rock")){                     //get human choice
+        choiceHuman= "rock"
+
+    } else if (e.target==document.querySelector("#scissors")) {
+        choiceHuman= "scissors"
+        
+    } else {
+        choiceHuman= "paper"
+        }
+    
+    const optionPCRef = document.querySelector("#optionPC")             //get img element ref for editing the src
+    const optionHumanRef = document.querySelector("#optionHuman")  
+    optionHumanRef.src= "images/"+choiceHuman+"Logo.png"                //change the images based on the player choices
+    optionPCRef.src= "images/"+choicePc+"Logo.png"
+
+    return playRound(choiceHuman,choicePc) 
+}
+
+
+function playRound(optionH,optionPc){
+    let humanScore
+    let pcScore
     let veredict;
     let justification;
     optionPCRef = document.querySelector("#optionPC")
@@ -117,36 +121,4 @@ function clash(optionH,optionPc){                                         //stat
         }
     }
     console.log(veredict + ". " + justification)
-
-    document.querySelector(".human").innerText = "Points: " + humanScore
-    document.querySelector(".computer").innerText = "Points: " + pcScore
-
-    round += 1
-    roundRef.innerText = "Round "+round
-
-}
-
-
-
-function showPopup(winner) {
-    switch (winner) {
-        case "human":
-            document.querySelector("#endMsg").innerText = "You've beat the Computer!";
-            break
-
-        case "pc":
-            document.querySelector("#endMsg").innerText = "You've lost!";
-            break
-
-        case "draw":
-            document.querySelector("#endMsg").innerText = "It's a Draw!";
-            break
-        }
-    document.querySelector("#popup").style.display = "block";
-}
-  
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-    round = 0
-    roundRef.innerText = "Round "+round
 }
