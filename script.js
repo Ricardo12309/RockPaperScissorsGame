@@ -30,13 +30,13 @@ function getChoices(e){
 
     getPcChoice()                                                       //get PC Choice
   
-    if (e.target==document.querySelector("#rock")){                     //get human choice
+    if (e.target.id === "rock"){                     //get human choice
         choiceHuman= "rock"
 
-    } else if (e.target==document.querySelector("#scissors")) {
+    } else if (e.target.id === "scissors") {
         choiceHuman= "scissors"
         
-    } else {
+    } else if (e.target.id === "paper") {
         choiceHuman= "paper"
         }
     
@@ -72,7 +72,7 @@ function clash(optionH,optionPc){                                         //stat
     optionHumanRef = document.querySelector("#optionHuman")
     if (optionH  == "rock"){
         if (optionPc == "paper"){
-            veredict = "You Lose!"
+            veredict = "You've lost this round!"
             justification = "Paper beats Rock!"
             pcScore +=1;
         }
@@ -81,13 +81,13 @@ function clash(optionH,optionPc){                                         //stat
             justification = "Play Again!"
         } 
         if (optionPc == "scissors") {
-            veredict = "You Win!"
+            veredict = "You've won this round!"
             justification = "Rock beats Scissors!"
             humanScore += 1;
         }
     } if (optionH  == "paper"){
         if (optionPc == "scissors"){
-            veredict = "You Lose!"
+            veredict = "You've lost this round!"
             justification = "Scissors beats Paper!"
             pcScore +=1;
         }
@@ -96,13 +96,13 @@ function clash(optionH,optionPc){                                         //stat
             justification = "Play Again!"
         } 
         if (optionPc == "rock") {
-            veredict = "You Win!"
+            veredict = "You've won this round!"
             justification = "Paper beats Rock!"
             humanScore += 1;
         }
     } if (optionH  == "scissors"){
         if (optionPc == "rock"){
-            veredict = "You Lose!"
+            veredict = "You've lost this round!"
             justification = "Rock beats Scissors!"
             pcScore +=1;
         }
@@ -111,18 +111,18 @@ function clash(optionH,optionPc){                                         //stat
             justification = "Play Again!"
         } 
         if (optionPc == "paper") {
-            veredict = "You Win!"
+            veredict = "You've won this round!"
             justification = "Scissors beats Paper!"
             humanScore += 1;
         }
     }
-    console.log(veredict + ". " + justification)
+    document.querySelector("#roundMsg").innerText= veredict +" "+ justification
 
-    document.querySelector(".human").innerText = "Points: " + humanScore
-    document.querySelector(".computer").innerText = "Points: " + pcScore
+    document.querySelector(".human").innerText = "Player: " + humanScore
+    document.querySelector(".computer").innerText = "Computer: " + pcScore
 
     round += 1
-    roundRef.innerText = "Round "+round
+    roundRef.innerText = "Round "+round+"/5"
 
 }
 
@@ -131,22 +131,26 @@ function clash(optionH,optionPc){                                         //stat
 function showPopup(winner) {
     switch (winner) {
         case "human":
-            document.querySelector("#endMsg").innerText = "You've beat the Computer!";
+            document.querySelector("#endMsg").innerText = "Congratulations! \n \n You've beat the Computer!";
             break
 
         case "pc":
-            document.querySelector("#endMsg").innerText = "You've lost!";
+            document.querySelector("#endMsg").innerText = "Oh no... \n You've lost!";
             break
 
         case "draw":
-            document.querySelector("#endMsg").innerText = "It's a Draw!";
+            document.querySelector("#endMsg").innerText = "What a lost of time... \n It's a Draw!";
             break
         }
-    document.querySelector("#popup").style.display = "block";
+    document.querySelector("#popup").style.display = "flex";
 }
   
 function closePopup() {
     document.getElementById("popup").style.display = "none";
     round = 0
+    humanScore=0
+    pcScore=0
+    document.querySelector(".human").innerText = "Player: " + humanScore
+    document.querySelector(".computer").innerText = "Computer " + pcScore
     roundRef.innerText = "Round "+round
 }

@@ -6,49 +6,50 @@
     <title>Document</title>
     <script src="script.js" defer> </script>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Luckiest+Guy&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top"> 
-        <h1 class="top>"> Welcome to Rock Paper Scissors</h1>
-        <div class="scoreBoard">
-            <div class="player"> 
-                <h1> Player </h1>
-                <h3 id="history" class="human"></h3>
-                <div class="option">
-                    <img id="optionHuman" src="">
+    <h1> Welcome to Rock Paper Scissors!</h1>
+    <div class="mainLayer">
+        <div class="top"> 
+            <h2 id="round"> Round 0/5 </h2>  
+            <div class="scoreBoard">
+                <div class="player"> 
+                    <h3 id="round" class="human"> Player: 0 </h3>
+                    <div class="option">
+                        <img id="optionHuman" src="">
+                    </div>
+                </div>
+                <h1 class="vs">Vs</h1>
+                <div class="player" >
+                    <h3 id="round" class="computer"> Computer: 0 </h3>
+                    <div class="option">
+                        <img id="optionPC" src="">
+                    </div>
                 </div>
             </div>
-            <img class="vsLogoImage" src="images/pngtree-vs-or-versus-in-comics-dot-style-png-image_2913118.jpg"></img>
-            <div class="player" >
-                <h1> Computer </h1>
-                <h3 id="history" class="computer"></h3>
-                <div class="option">
-                    <img id="optionPC" src="">
-                </div>
+            <h2 id="roundMsg">Best of 5 rounds wins</h2>
+        </div>
+        <div id="bottom">
+        <h2>Choose your glove!</h2>
+            <div class="bottom"> 
+                <button id="rock">
+                    <img id="rock" src="images/rockLogo.png">
+                </button>
+                <button id="paper">
+                    <img id="paper" src="images/paperLogo.png">
+                </button>
+                <button id="scissors">
+                    <img id="scissors" src="images/scissorsLogo.png"">
+                </button>
+        
             </div>
-        </div>
-    </div>
-
-    <div class="mid">
-        <div class="optionClash">
-            <div class="playerOption"></div>
-            <div class="computerOption"></div>
-        </div>
-        <h3 id="round"> Round 0 </h3>  
-    </div>    
-
-    <div class="bottom">
-        <h2> Choose your weapon!</h2>
-        <div class="arsenal">
-            <button id="rock"> Rock</button>
-            <button id="paper"> Paper</button>
-            <button id="scissors"> Scissors</button>
-        </div>
+        </div>    
         <div class="history"></div>
     </div>
     <div id="popup">
         <p id="endMsg">This is a custom pop-up!</p>
-        <button onclick="closePopup()">Play Again</button>
+        <button id="round" onclick="closePopup()">Play Again!</button>
     </div>
 </body>
 </html>
